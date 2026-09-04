@@ -8,11 +8,6 @@
     "scheme": "wisp",
     "userInterfaceStyle": "dark",
     "backgroundColor": "#0B1026",
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#0B1026"
-    },
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.formaz.wisp",
@@ -35,6 +30,15 @@
         {
           "icon": "./assets/notification-icon.png",
           "color": "#7EF0C4"
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#0B1026"
         }
       ]
     ],
