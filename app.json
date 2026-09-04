@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "Wisp",
+    "slug": "wisp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "wisp",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0B1026",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0B1026"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.formaz.wisp",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSUserNotificationsUsageDescription": "Wisp sends optional daily check-ins and milestone celebrations to help you stay vape-free.",
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.formaz.wisp",
+      "adaptiveIcon": {
+        "backgroundColor": "#0B1026",
+        "foregroundImage": "./assets/adaptive-icon.png"
+      }
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#7EF0C4"
+        }
+      ]
+    ],
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "owner": "raymondzhao3000",
+    "extra": {
+      "eas": {
+        "projectId": "0062ac24-89dd-4127-8733-384d9b89809f"
+      }
+    }
+  }
+}
