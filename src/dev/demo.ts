@@ -66,7 +66,8 @@ function buildState(name: DemoName, now: number): WispState | null {
     case 'home5': {
       const s = base(now, 32);
       const cravings = cravingsOver(now, [30, 28, 26, 25, 22, 21, 19, 17, 15, 14, 12, 11, 9, 8, 6, 5, 3, 2, 1]);
-      return { ...s, cravings, cravingsBeaten: cravings.length, longestStreakMs: 0 };
+      // 2% nicotine keeps the mg figure short enough for the home tile (web has no adjustsFontSizeToFit).
+      return { ...s, nicotinePct: 2, cravings, cravingsBeaten: cravings.length, longestStreakMs: 0 };
     }
     case 'stats': {
       // 16 days since the first quit; one slip on day -11 and one on day -3 (current streak = 3d).
@@ -86,7 +87,7 @@ function buildState(name: DemoName, now: number): WispState | null {
         slips,
         cravings,
         cravingsBeaten: beaten.length,
-        longestStreakMs: 8 * DAY - 1 * HOUR,
+        longestStreakMs: 8 * DAY + 1 * HOUR,
         slipPenaltyUntil: null,
       };
     }
