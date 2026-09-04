@@ -16,9 +16,9 @@ import {
 
 const STEPS = 6;
 
-export default function OnboardingScreen({ onDone }: { onDone: () => void }) {
+export default function OnboardingScreen({ onDone, initialStep }: { onDone: () => void; initialStep?: number }) {
   const { completeOnboarding } = useApp();
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(initialStep ?? 0);
   const [vapeType, setVapeType] = useState<VapeType>('disposable');
   const [puffs, setPuffs] = useState(300);
   const [nic, setNic] = useState<number>(5);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer, DarkTheme, Theme } from '@react-navigation/native';
@@ -17,6 +17,7 @@ import SOSScreen from './src/screens/SOSScreen';
 import HealthScreen from './src/screens/HealthScreen';
 import StatsScreen from './src/screens/StatsScreen';
 import TaperScreen from './src/screens/TaperScreen';
+import { demo } from './src/dev/demo';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -41,12 +42,12 @@ function Root() {
   }, []);
 
   if (!ready) return <View style={{ flex: 1, backgroundColor: colors.bg }} />;
-  if (!state.onboarded) return <OnboardingScreen onDone={() => setJustOnboarded(true)} />;
+  if (!state.onboarded) return <OnboardingScreen onDone={() => setJustOnboarded(true)} initialStep={demo?.onboardStep} />;
 
   return (
     <NavigationContainer theme={navTheme}>
       <Stack.Navigator
-        initialRouteName={justOnboarded ? 'Paywall' : 'Home'}
+        initialRouteName={demo?.screen ?? (justOnboarded ? 'Paywall' : 'Home')}
         screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.bg } }}
       >
         <Stack.Screen name="Home" component={HomeScreen} />
@@ -66,12 +67,22 @@ function Root() {
   );
 }
 
+// Web-only: pin the app to the viewport (phone-sized window when capturing screenshots)
+// and pad for the iOS status bar / home indicator so captures match a real device.
+const webFrame =
+  Platform.OS === 'web'
+    ? ({ width: '100%', height: '100vh', overflow: 'hidden', backgroundColor: colors.bg } as const)
+    : null;
+const demoInsets = demo ? { paddingTop: 59, paddingBottom: 34 } : null;
+
 export default function App() {
   return (
     <SafeAreaProvider>
       <StatusBar style="light" />
       <AppProvider>
-        <Root />
+        <View style={[{ flex: 1 }, webFrame as any, demoInsets]}>
+          <Root />
+        </View>
       </AppProvider>
     </SafeAreaProvider>
   );
