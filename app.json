@@ -45,7 +45,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "owner": "raymondzhao3000",
+    "owner": "formaz",
     "extra": {
       "eas": {
         "projectId": "0062ac24-89dd-4127-8733-384d9b89809f"
